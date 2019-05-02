@@ -1,6 +1,59 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+#   Products
 app_products_list:
-    path: /products
+    path:       /products
     controller: App\Controller\ProductController::getProducts
+    methods:    GET
+app_product_show:
+    path:       /products/{product_id}
+    controller: App\Controller\ProductController::getProduct
+    methods:    GET
+    requirements:
+        product_id: \d+
+app_add_product_to_list:
+    path:       /products
+    controller: App\Controller\ProductController::addProduct
+    methods:   POST
+app_insrease_product_quantity:
+    path:       /products/{product_id}
+    controller: App\Controller\ProductController::setProductQuantity
+    methods:    PUT
+    requirements:
+        product_id: \d+
+
+#   Users
+app_users_list:
+    path:       /users
+    controller: App\Controller\UserController::getUsers
+    methods:    GET
+app_user_show:
+    path:       /users/{user_id}
+    controller: App\Controller\UserController::getUser
+    methods:    GET
+
+#   Carts
+app_carts_list:
+    path:       /carts
+    controller: App\Controller\CartController::getCarts
+    methods:    GET
+app_cart_show:
+    path:       /carts/{cart_id}
+    controller: App\Controller\CartController::getCart
+    methods:    GET
+    requirements:
+        cart_id: \d+
+app_add_product_to_cart:
+    path:       /carts/{cart_id}
+    controller: App\Controller\CartController::addProduct
+    methods:    POST
+    requirements:
+        cart_id: \d+
+app_remove_product_from_cart:
+    path:       /carts/{cart_id}
+    controller: App\Controller\CartController::removeProduct
+    methods:    DELETE
+    requirements:
+        cart_id: \d+

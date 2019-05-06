@@ -31,7 +31,7 @@ app_users_list:
     methods:    GET
 app_user_show:
     path:       /users/{user_id}
-    controller: App\Controller\UserController::getUser
+    controller: App\Controller\UserController::getUserById
     methods:    GET
 
 #   Carts

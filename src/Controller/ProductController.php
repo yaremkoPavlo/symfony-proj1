@@ -1,10 +1,11 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #use Symfony\Component\Routing\Annotation\Route;
 
-class ProductController
+class ProductController extends AbstractController
 {
     /**
      * TODO:
@@ -12,7 +13,7 @@ class ProductController
      */
     public function getProducts()
     {
-        return new Response('{"a":"products"}', Response::HTTP_OK, JSON_TYPE);
+        return $this->json(['a' => 'products']);
     }
 
     /**
@@ -21,7 +22,7 @@ class ProductController
      */
     public function getAllProducts()
     {
-        return new Response('{"a":"All products"}', Response::HTTP_OK, JSON_TYPE);
+        return $this->json(['a' => 'All products']);
     }
 
     /**
@@ -31,16 +32,17 @@ class ProductController
      */
     public function getProduct(int $product_id)
     {
-        $content = '{"id":' . $product_id . '}';
-        return new Response($content, Response::HTTP_OK, JSON_TYPE);
+        $content = ['id' => $product_id];
+        return $this->json($content);
     }
 
     /**
      * TODO:
      * Implement adding product to DB
      */
-    public function addProduct()
+    public function addProduct(Request $request)
     {
+        print_r($request->request->all());
         return $this->getProducts();
     }
 
@@ -49,8 +51,9 @@ class ProductController
      * Implement increasing product quantity
      * @param int
      */
-    public function setProductQuantity(int $product_id)
+    public function setProductQuantity(int $product_id, Request $request)
     {
+        print_r($request->request->all());
         return $this->getProduct($product_id);
     }
 }

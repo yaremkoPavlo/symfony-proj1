@@ -1,9 +1,9 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class UserController
+class UserController extends AbstractController
 {
     /**
      * TODO:
@@ -11,7 +11,7 @@ class UserController
      */
     public function getUsers()
     {
-        return new Response('{"a":"users"}', Response::HTTP_OK, JSON_TYPE);
+        return $this->json(['a' => 'users']);
     }
 
     /**
@@ -19,9 +19,9 @@ class UserController
      * Show info about one user by id. Info from `users` and `carts` tables, perhaps `orders` too
      * @param int
      */
-    public function getUser(int $user_id)
+    public function getUserById(int $user_id)
     {
-        $content = '{"id":' . $user_id . '}';
-        return new Response($content, Response::HTTP_OK, JSON_TYPE);
+        $content = ['user_id' => $user_id];
+        return $this->json($content);
     }
 }

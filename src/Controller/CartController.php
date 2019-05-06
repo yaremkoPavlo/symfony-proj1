@@ -1,61 +1,60 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
-class CartController
+class CartController extends AbstractController
 {
     /**
      * Show all carts
      * 
-     * @return Response
      */
     public function getCarts()
     {
-        return new Response('{"a":"carts"}', Response::HTTP_OK, JSON_TYPE);
+        return $this->json(['a' => 'carts']);
     }
 
     /**
      * Show one cart by slug
      * 
      * @param int
-     * @return Response
      */
     public function getCart(int $cart_id)
     {
-        $content = '{"id":' . $cart_id . '}';
-        return new Response($content, Response::HTTP_OK, JSON_TYPE);
+        $content = ['id' => $cart_id];
+        return $this->json($content);
     }
 
     /**
      * Add product to cart and return upgraded cart
      * 
      * @param int
-     * @return Response
      */
-    public function addProduct(int $cart_id)
+    public function addProduct(int $cart_id, Request $request)
     {
         /**
          *  TODO:
          *  This should be implementation to add product to cart
          * 
          */
-        return $this->getCart( $cart_id);
+        print_r($request->request->all());
+        return $this->getCart($cart_id);
     }
 
     /**
      * Remove product to cart and return upgraded cart
      * 
      * @param int
-     * @return Response
      */
-    public function removeProduct(int $cart_id)
+    public function removeProduct(int $cart_id, Request $request)
     {
         /**
          *  TODO:
          *  This should be implementation to remove product from cart
          * 
          */
+        print_r($request->request->all());
         return $this->getCart($cart_id);
     }
 }
